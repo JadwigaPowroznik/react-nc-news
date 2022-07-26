@@ -59,7 +59,8 @@
 
 .listOfArticlesByUser,
 .listOfArticlesByTopic,
-.listOfArticles {
+.listOfArticles,
+.listOfTopics {
   list-style: none;
   width: 100%;
   max-width: 300px;
@@ -77,6 +78,7 @@
 }
 
 .listOfArticlesByUserLI,
+.listOfTopicsLI,
 .listOfArticlesByTopicLI{
   margin: 15px ;
 }
@@ -107,7 +109,8 @@
 }
 
 .sectionlistOfUsers,
-.sectionlistOfArticlesByTopic{
+.sectionlistOfArticlesByTopic,
+.topicsList{
   margin: 20px;
   text-align: center;
   display: flex;
