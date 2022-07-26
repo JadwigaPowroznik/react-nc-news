@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as api from "../api";
 
-function ArticlesListByTopic() {
-  const [articles, setArticles] = useState([]);
-  const [topics, setTopics] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+function ArticleListByTopic() {
   const { topic } = useParams();
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -14,40 +14,34 @@ function ArticlesListByTopic() {
       setArticles(articlesAPI);
       setIsLoading(false);
     });
-  }, []);
+  }, [topic]);
 
-  useEffect(() => {
-    setIsLoading(true);
-    api.getTopics().then((topicsAPI) => {
-      setTopics(topicsAPI);
-      setIsLoading(false);
-    });
-  }, []);
-  ////////////
   let articlesByTopic = articles.filter((article) => {
-    if (article.author === user.username) {
+    if (article.topic === topic) {
       return article;
     }
   });
-  let h3 = <h3>Your current articles :</h3>;
-  if (articlesByUser.length === 0) {
-    h3 = <h3>No articles found!</h3>;
+
+  let h3 = <h3>{topic} articles :</h3>;
+  if (articlesByTopic.length === 0 && isLoading === false) {
+    h3 = <h3>No articles found for {topic} topic!</h3>;
   }
 
   return (
-    <section>
+    <section className="sectionlistOfArticlesByTopic">
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <div>
           {h3}
-          <ul className="listOfArticlesByUser">
-            {articlesByUser.map((article, index) => {
+          <ul className="listOfArticlesByTopic">
+            {articlesByTopic.map((article, index) => {
               return (
-                <li key={index} className="listOfArticlesByUserLI">
+                <li key={index} className="listOfArticlesByTopicLI">
                   <Link to={`/api/articles/${article.article_id}`}>
                     {article.title}
                   </Link>
+                  <p>Author : {article.author}</p>
                 </li>
               );
             })}
@@ -58,4 +52,4 @@ function ArticlesListByTopic() {
   );
 }
 
-export default ArticlesListByTopic;
+export default ArticleListByTopic;

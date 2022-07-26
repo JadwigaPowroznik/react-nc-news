@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import ArticlesListByUser from "./components/UsersList";
 import TopicsList from "./components/TopicsList";
+import ArticleListByTopic from "./components/ArticleListByTopic";
 import ArticleList from "./components/ArticleList";
 import UserChange from "./components/UserChange";
 import ArticleCard from "./components/ArticleCard";
@@ -27,6 +28,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/topics" element={<TopicsList />}></Route>
+            <Route
+              path="/topics/:topic"
+              element={<ArticleListByTopic />}
+            ></Route>
             <Route path="/users" element={<ArticlesListByUser />}></Route>
             <Route path="/users/user_change" element={<UserChange />}></Route>
             <Route path="/articles" element={<ArticleList />}></Route>

@@ -1,25 +1,25 @@
-import {useEffect, useState} from 'react'
-import * as api from '../api'
+import { useEffect, useState } from "react";
+import * as api from "../api";
 
-function TopicsList (){
+function TopicsList() {
+  const [topics, setTopics] = useState([]);
+  useEffect(() => {
+    api.getTopics().then((topicsAPI) => {
+      console.log(topicsAPI);
+      setTopics(topicsAPI);
+    });
+  }, []);
 
-    const [topics, setTopics] = useState([])
-    useEffect(()=>{
-       api.getTopics().then((topicsAPI)=>{
-        setTopics(topicsAPI)
-       })
-    }, [])
-
-    return (<section className="topicsList">
-    <h2 className="listOfTopics">List of topics :</h2>
-    <ul className="listOfTopics">
-        { topics.map((topic, index)=>{
-            return <li key={index}>
-                {topic.slug}
-                </li>
+  return (
+    <section className="topicsList">
+      <h2 className="listOfTopics">List of topics :</h2>
+      <ul className="listOfTopics">
+        {topics.map((topic, index) => {
+          return <li key={index}>{topic.slug}</li>;
         })}
-    </ul>
- </section>  )
+      </ul>
+    </section>
+  );
 }
 
-export default TopicsList
+export default TopicsList;
