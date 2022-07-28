@@ -26,17 +26,12 @@ export function getArticles(page, topic) {
       },
     })
     .then(({ data }) => {
-      console.log(data);
       return data.articles;
-    })
-    .catch(function (error) {
-      console.log(error.toJSON());
     });
 }
 
 export function getArticleById(article_id) {
   return ncNewsAPI.get(`/api/articles/${article_id}`).then(({ data }) => {
-    console.log(data);
     return data.article;
   });
 }
@@ -45,7 +40,6 @@ export function getArticleCommentsById(article_id) {
   return ncNewsAPI
     .get(`/api/articles/${article_id}/comments`)
     .then(({ data }) => {
-      console.log(data);
       return data.comments;
     });
 }

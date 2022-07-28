@@ -70,7 +70,7 @@ const ArticleCard = () => {
                   </div>
                   {isOpen && <CommentsList article_id={article_id} />}
                 </div>
-                <div className="VotesButton">
+                <div className="votesButton">
                   <button
                     className="selectButton"
                     onClick={() => {

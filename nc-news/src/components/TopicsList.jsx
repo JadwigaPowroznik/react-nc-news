@@ -15,7 +15,11 @@ function TopicsList() {
   return (
     <section className="topicsList">
       <h3>List of available article topics :</h3>
+
       <ul className="listOfTopics">
+        <li>
+          <Link to={`/articles`}>All Articles</Link>
+        </li>
         {topics.map((topic, index) => {
           return (
             <li className="listOfTopicsLI" key={index}>

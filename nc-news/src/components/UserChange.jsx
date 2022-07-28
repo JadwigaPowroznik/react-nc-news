@@ -18,7 +18,7 @@ function UserChange() {
 
   return (
     <section className="sectionlistOfUsers">
-      <h2>Select a user:</h2>
+      <h2 className="listOfUsersh2">Select a user:</h2>
       {isLoading ? (
         <p>Loading</p>
       ) : (

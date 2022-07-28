@@ -83,7 +83,7 @@
   margin: 15px ;
 }
 
-.listOfUsers {
+/* .listOfUsers {
   width: 100%;
   max-width: 300px;
   margin: 0px auto;
@@ -96,7 +96,7 @@
   font: black;
   border-style: solid;
   font-size: 16px;
-}
+} */
 
 .SingleComment{
   max-width: 600px;
@@ -141,6 +141,29 @@
   padding: 10px;
 }
 
+.votesButton{
+  float: right;
+}
+.listOfUsersUl{
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around; 
+}
+.listOfUsers{
+  width: 100%;
+  max-width: 400px;
+  margin: 0px auto;
+  text-align: center;
+  border: 1px;
+  padding: 25px;
+  margin: 20px;
+  border-radius: 50px;
+  border-color: rgb(62, 94, 182);
+  font: black;
+  border-style: solid;
+  font-size: 16px;
+}
 
 .articleCard {
   width: 100%;
@@ -156,6 +179,11 @@
   border-style: solid;
   font-size: 16px;
   
+}
+
+.listOfUsersh2{
+  text-align: center;
+  margin: 20px;
 }
 
 .articleCardTitle{
@@ -176,7 +204,7 @@
   justify-content: center;
 }
 
-.sectionlistOfUsers,
+/* .sectionlistOfUsers, */
 .sectionlistOfArticlesByTopic,
 .topicsList{
   margin: 20px;
@@ -188,13 +216,17 @@
 }
 
 .selectButton{
-  padding: 8px 20px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    font-size: 18px;
-    color: white;
-    background-color: #1888ff
+  border: none;
+  border-radius: 15px;
+  padding: 10px 14px;
+  margin: 4px;
+  display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .selectButton {
+     width:50%;
+  }
 }
 
 .listOfUsersimage{

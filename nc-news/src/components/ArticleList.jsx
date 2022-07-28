@@ -50,6 +50,7 @@ function ArticlesList() {
         ) : (
           <div className="sectionListOfArticles">
             {h2}
+
             <ul className="sectionListOfArticles">
               {articles.map((article, index) => {
                 return (
@@ -66,7 +67,7 @@ function ArticlesList() {
             <div>
               <button
                 disabled={page === 1}
-                className="selectPage"
+                className="selectButton"
                 onClick={() => {
                   setPage(page - 1);
                 }}
@@ -76,7 +77,7 @@ function ArticlesList() {
               <p>Page : {page}</p>
               <button
                 disabled={articles.length < 10}
-                className="selectPage"
+                className="selectButton"
                 onClick={() => {
                   setPage(page + 1);
                 }}
