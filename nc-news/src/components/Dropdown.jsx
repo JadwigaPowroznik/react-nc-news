@@ -1,44 +1,32 @@
-import React, {useEffect, useState} from 'react';
-//import {MenuItems} from './MenuItems'
-import {Link} from 'react-router-dom' 
-import './componentsCSS/Dropdown.css'
-import * as api from '../api'
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { TopicsContext } from "../contexts/Topics";
+import "./componentsCSS/Dropdown.css";
 
-function Dropdown(){
-    const [click, setClick] = useState(false)
-    const [categories, setCategory] = useState([])
+function Dropdown() {
+  const { topics } = useContext(TopicsContext);
+  const [click, setClick] = useState(false);
 
-    let MenuItems = [
-      {  topic: 'All',
-          path: '/articles',
-          name: 'dropdown-link'
-        }]
+  let menuItems = [{ topic: "All", path: "/articles", name: "dropdown-link" }];
 
-    const handleClick=()=>setClick(!click)
+  const handleClick = () => setClick(true);
 
-    useEffect(()=>{
-             api.getTopics().then((categoriesAPI)=>{
-              setCategory(categoriesAPI)
-             })
-          }, [])
-   
-      categories.forEach(top =>{
-        let topic = top.slug
-        
-        MenuItems.push({
-            topic: `${topic}`,
-            path: `/topics/${topic}`,
-            name: 'dropdown-link'
-          })
-      })
+  topics.forEach((top) => {
+    let topic = top.slug;
+    menuItems.push({
+      topic: `${topic}`,
+      path: `/topics/${topic}`,
+      name: "dropdown-link",
+    });
+  });
 
-    return(
-        <>
-        <ul 
+  return (
+    <>
+      <ul
         onClick={handleClick}
-        className={click? 'dropdown-menu clicked' : 'dropdown-menu'}
-        >
-            {MenuItems.map((item, index) => {
+        className={click ? "dropdown-menu clicked" : "dropdown-menu"}
+      >
+        {menuItems.map((item, index) => {
           return (
             <li key={index}>
               <Link
@@ -51,9 +39,9 @@ function Dropdown(){
             </li>
           );
         })}
-        </ul>
-        </>
-    )
+      </ul>
+    </>
+  );
 }
 
-export default Dropdown
+export default Dropdown;

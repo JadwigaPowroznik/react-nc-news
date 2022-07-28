@@ -58,7 +58,9 @@
 }
 
 .listOfArticlesByUser,
-.listOfArticles {
+.listOfArticlesByTopic,
+.listOfArticles,
+.listOfTopics {
   list-style: none;
   width: 100%;
   max-width: 300px;
@@ -75,11 +77,13 @@
   background-image: linear-gradient(0deg, #d6d2cd 0%, #d1daf5 100%);
 }
 
-.listOfArticlesByUserLI{
-  margin: 10px ;
+.listOfArticlesByUserLI,
+.listOfTopicsLI,
+.listOfArticlesByTopicLI{
+  margin: 15px ;
 }
 
-.listOfUsers {
+/* .listOfUsers {
   width: 100%;
   max-width: 300px;
   margin: 0px auto;
@@ -92,9 +96,105 @@
   font: black;
   border-style: solid;
   font-size: 16px;
+} */
+
+.SingleComment{
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 30px;
+  text-align: center;
+  border: 1px;
+  padding: 25px;
+  margin: 10px;
+  border-radius: 25px;
+  border-color: rgb(62, 94, 182);
+  font: black;
+  border-style: solid;
+  font-size: 16px;
+}
+
+.listOfComments {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+  align-items: center;
+  list-style: none;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.commentsButtons{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.SingleCommentData{
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around; 
+}
+
+.articleCardBodyData{
+  padding: 10px;
+}
+
+.votesButton{
+  float: right;
+}
+.listOfUsersUl{
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around; 
+}
+.listOfUsers{
+  width: 100%;
+  max-width: 400px;
+  margin: 0px auto;
+  text-align: center;
+  border: 1px;
+  padding: 25px;
+  margin: 20px;
+  border-radius: 50px;
+  border-color: rgb(62, 94, 182);
+  font: black;
+  border-style: solid;
+  font-size: 16px;
+}
+
+.articleCard {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+  text-align: justify;
+  border: 1px;
+  padding: 25px;
+  margin: 20px;
+  border-radius: 50px;
+  border-color: rgb(62, 94, 182);
+  font: black;
+  border-style: solid;
+  font-size: 16px;
   
 }
 
+.listOfUsersh2{
+  text-align: center;
+  margin: 20px;
+}
+
+.articleCardTitle{
+  text-align: center;
+}
+
+.articleCardBody{
+  margin: 20px;
+}
+
+.sectionarticleCardTitle,
 .sectionListOfArticles {
   margin: 20px;
   text-align: center;
@@ -104,7 +204,9 @@
   justify-content: center;
 }
 
-.sectionlistOfUsers{
+/* .sectionlistOfUsers, */
+.sectionlistOfArticlesByTopic,
+.topicsList{
   margin: 20px;
   text-align: center;
   display: flex;
@@ -114,13 +216,17 @@
 }
 
 .selectButton{
-  padding: 8px 20px;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    font-size: 18px;
-    color: black;
-    background-color: #1888ff
+  border: none;
+  border-radius: 15px;
+  padding: 10px 14px;
+  margin: 4px;
+  display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .selectButton {
+     width:50%;
+  }
 }
 
 .listOfUsersimage{
