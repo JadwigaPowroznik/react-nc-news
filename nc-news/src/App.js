@@ -36,7 +36,7 @@ function App() {
               <Route path="/users/user_change" element={<UserChange />}></Route>
               <Route path="/articles" element={<ArticleList />}></Route>
               <Route
-                path="/api/articles/:article_id"
+                path="/articles/:article_id"
                 element={<ArticleCard />}
               ></Route>
             </Routes>

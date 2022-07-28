@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../api";
-import CommentsPopup from "./CommentsPopup";
 import CommentsList from "./CommentsList";
 
 const ArticleCard = () => {
@@ -92,10 +91,6 @@ const ArticleCard = () => {
                     -
                   </button>
                 </div>
-
-                {/* <CommentsPopup>
-                <CommentsList article_id={article_id} />
-              </CommentsPopup> */}
               </div>
             </div>
           </div>

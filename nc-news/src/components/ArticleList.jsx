@@ -21,12 +21,7 @@ function ArticlesList() {
         setArticles(`No articles found for ${topic} topic!`);
         setError(null);
         setIsLoading(false);
-      }
-      // else if (articlesAPI.name !== "AxiosError") {
-      //   setError(articlesAPI.message);
-      //   setIsLoading(false);
-      // }
-      else {
+      } else {
         setArticles(articlesAPI);
         setError(null);
         setIsLoading(false);
