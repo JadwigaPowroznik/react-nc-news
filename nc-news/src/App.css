@@ -96,9 +96,77 @@
   font: black;
   border-style: solid;
   font-size: 16px;
+}
+
+.SingleComment{
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 30px;
+  text-align: center;
+  border: 1px;
+  padding: 25px;
+  margin: 10px;
+  border-radius: 25px;
+  border-color: rgb(62, 94, 182);
+  font: black;
+  border-style: solid;
+  font-size: 16px;
+}
+
+.listOfComments {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+  align-items: center;
+  list-style: none;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.commentsButtons{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.SingleCommentData{
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around; 
+}
+
+.articleCardBodyData{
+  padding: 10px;
+}
+
+
+.articleCard {
+  width: 100%;
+  max-width: 600px;
+  margin: 0px auto;
+  text-align: justify;
+  border: 1px;
+  padding: 25px;
+  margin: 20px;
+  border-radius: 50px;
+  border-color: rgb(62, 94, 182);
+  font: black;
+  border-style: solid;
+  font-size: 16px;
   
 }
 
+.articleCardTitle{
+  text-align: center;
+}
+
+.articleCardBody{
+  margin: 20px;
+}
+
+.sectionarticleCardTitle,
 .sectionListOfArticles {
   margin: 20px;
   text-align: center;
@@ -125,7 +193,7 @@
     outline: none;
     border: none;
     font-size: 18px;
-    color: black;
+    color: white;
     background-color: #1888ff
 }
 

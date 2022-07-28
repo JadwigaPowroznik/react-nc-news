@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { TopicsContext } from "../contexts/Topics";
 import "./componentsCSS/Dropdown.css";
-import * as api from "../api";
 
 function Dropdown() {
+  const { topics } = useContext(TopicsContext);
   const [click, setClick] = useState(false);
-  const [categories, setCategory] = useState([]);
 
-  let MenuItems = [{ topic: "All", path: "/articles", name: "dropdown-link" }];
+  let menuItems = [{ topic: "All", path: "/articles", name: "dropdown-link" }];
 
   const handleClick = () => setClick(true);
 
-  useEffect(() => {
-    api.getTopics().then((categoriesAPI) => {
-      setCategory(categoriesAPI);
-    });
-  }, []);
-
-  categories.forEach((top) => {
+  topics.forEach((top) => {
     let topic = top.slug;
-    topic.toLowerCase();
-    topic[0].toUpperCase();
-    MenuItems.push({
+    menuItems.push({
       topic: `${topic}`,
       path: `/topics/${topic}`,
       name: "dropdown-link",
@@ -34,7 +26,7 @@ function Dropdown() {
         onClick={handleClick}
         className={click ? "dropdown-menu clicked" : "dropdown-menu"}
       >
-        {MenuItems.map((item, index) => {
+        {menuItems.map((item, index) => {
           return (
             <li key={index}>
               <Link

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { TopicsContext } from "../contexts/Topics";
 import * as api from "../api";
 
 function TopicsList() {
-  const [topics, setTopics] = useState([]);
+  const { topics, setTopics } = useContext(TopicsContext);
   useEffect(() => {
     api.getTopics().then((topicsAPI) => {
       console.log(topicsAPI);
