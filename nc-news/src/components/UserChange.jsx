@@ -31,6 +31,7 @@ function UserChange() {
                   src={user.avatar_url}
                   className="listOfUsersimage"
                   height="150"
+                  alt="User Avatar"
                 />
                 <p>
                   <Link to="/">

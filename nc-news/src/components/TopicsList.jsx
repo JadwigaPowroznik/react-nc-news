@@ -7,10 +7,9 @@ function TopicsList() {
   const { topics, setTopics } = useContext(TopicsContext);
   useEffect(() => {
     api.getTopics().then((topicsAPI) => {
-      console.log(topicsAPI);
       setTopics(topicsAPI);
     });
-  }, []);
+  }, [setTopics]);
 
   return (
     <section className="topicsList">

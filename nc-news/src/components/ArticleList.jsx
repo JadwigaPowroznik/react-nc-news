@@ -50,7 +50,7 @@ function ArticlesList() {
               {articles.map((article, index) => {
                 return (
                   <li key={index} className="listOfArticles">
-                    <Link to={`/api/articles/${article.article_id}`}>
+                    <Link to={`/articles/${article.article_id}`}>
                       {article.title}
                     </Link>
                     <p>Topic : {article.topic}</p>
