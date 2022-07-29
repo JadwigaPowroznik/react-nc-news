@@ -19,6 +19,10 @@ const ArticleCard = () => {
     });
   }, [article_id]);
 
+  // useEffect(() => {
+  //   window.location.reload(false);
+  // }, [refresh]);
+
   function incrementVotes() {
     setVotes((currentVotes) => currentVotes + 1);
   }

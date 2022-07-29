@@ -1,17 +1,67 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import * as api from "../api";
+import { UserContext } from "../contexts/User";
 
 function CommentsList({ article_id }) {
   const [comments, setComments] = useState([]);
+  const [page, setPage] = useState(1);
+  const [body, setBody] = useState("");
+  const [disableButton, setDisableButton] = useState(false);
+  const [commentIdToDelete, setCommentIdToDelete] = useState("");
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
-    api.getArticleCommentsById(article_id).then((commentsAPI) => {
+    api.getArticleCommentsById(article_id, 10, page).then((commentsAPI) => {
       setComments(commentsAPI);
     });
-  }, []);
+  }, [article_id, page]);
+
+  useEffect(() => {
+    if (typeof commentIdToDelete === "number") {
+      api.deleteCommentById(commentIdToDelete).then(() => {
+        window.location.reload();
+      });
+    }
+  }, [commentIdToDelete, article_id]);
+
+  const handleSubmit = (event) => {
+    setDisableButton(true);
+    event.preventDefault();
+
+    api
+      .postCommentByArticleId(article_id, {
+        username: user.username,
+        body: body,
+      })
+      .then(() => {
+        setBody("");
+        window.location.reload();
+      });
+
+    // window.location.reload(false);
+  };
 
   return (
     <section className="commentsList">
       <ul className="listOfComments">
+        <form className="CommentForm" onSubmit={handleSubmit}>
+          <input
+            placeholder="Comment"
+            className="CommentFormInputs"
+            type="text"
+            id="comment"
+            onChange={(event) => setBody(event.target.value)}
+            value={body}
+            disabled={disableButton}
+          />
+          <button
+            className="selectButton"
+            type="submit"
+            disabled={disableButton || body === ""}
+          >
+            Post Comment
+          </button>
+        </form>
         {comments.map((comment, index) => {
           return (
             <li key={index} className="SingleComment">
@@ -20,11 +70,48 @@ function CommentsList({ article_id }) {
                 <li>
                   Created at : {new Date(comment.created_at).toDateString()}
                 </li>
+                <li>
+                  <button
+                    disabled={
+                      comment.author !== user.username ||
+                      comment.comment_id === commentIdToDelete
+                    }
+                    className="selectButton"
+                    onClick={() => {
+                      setCommentIdToDelete(comment.comment_id);
+                    }}
+                  >
+                    {comment.comment_id === commentIdToDelete
+                      ? "Comment Deleted"
+                      : "Delete Comment"}
+                  </button>
+                </li>
               </ul>
               <p className="SingleCommentContent">{comment.body}</p>
             </li>
           );
         })}
+        <div className="commentsPage">
+          <button
+            disabled={page === 1}
+            className="selectButton"
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            Previous Page
+          </button>
+          <p>Page : {page}</p>
+          <button
+            disabled={comments.length < 10}
+            className="selectButton"
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            Next Page
+          </button>
+        </div>
       </ul>
     </section>
   );

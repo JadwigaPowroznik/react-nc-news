@@ -181,6 +181,7 @@
   
 }
 
+
 .listOfUsersh2{
   text-align: center;
   margin: 20px;
@@ -194,6 +195,7 @@
   margin: 20px;
 }
 
+.commentsPage,
 .sectionarticleCardTitle,
 .sectionListOfArticles {
   margin: 20px;
@@ -257,4 +259,23 @@
   border-radius: 4px;
   border: 2px solid  #1888ff;
   transition: all 0.3s ease-out;
+}
+
+.CommentForm {
+  border-radius: 25px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#comment {
+  height: 90px;
+}
+
+
+.CommentFormInputs {
+  font-family: "Sora";
+  border: 1px solid rgb(62, 94, 182);
+  border-radius: 25px ;
+  padding: 7px;
+  width: 99%;
 }
