@@ -16,13 +16,15 @@ export function getTopics() {
   });
 }
 
-export function getArticles(page, topic) {
+export function getArticles(page, topic, limit, order, sort_by) {
   return ncNewsAPI
     .get("/api/articles", {
       params: {
         p: page,
         topic: topic,
-        // limit: limit,
+        limit: limit,
+        order: order,
+        sort_by: sort_by,
       },
     })
     .then(({ data }) => {
@@ -30,20 +32,16 @@ export function getArticles(page, topic) {
     });
 }
 
-export function getArticleById(article_id, limit, page) {
+export function getArticleById(article_id) {
   return ncNewsAPI
-    .get(
-      `/api/articles/${article_id}`
-      // , {
-      //   params: {
-      //     p: page,
-      //     article_id: article_id,
-      //     limit: limit,
-      //   },
-      // }
-    )
+    .get(`/api/articles/${article_id}`)
     .then(({ data }) => {
       return data.article;
+    })
+    .catch(function (error) {
+      if (error.response) {
+        return error.response.data;
+      }
     });
 }
 

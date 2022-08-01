@@ -9,19 +9,22 @@ const ArticleCard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [votes, setVotes] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
     api.getArticleById(article_id).then((articleAPI) => {
-      setArticle(articleAPI);
-      setVotes(articleAPI.votes);
-      setIsLoading(false);
+      if (articleAPI.errMessage !== undefined) {
+        setError(articleAPI.errMessage);
+        setIsLoading(false);
+      } else {
+        setArticle(articleAPI);
+        setVotes(articleAPI.votes);
+        setError(null);
+        setIsLoading(false);
+      }
     });
   }, [article_id]);
-
-  // useEffect(() => {
-  //   window.location.reload(false);
-  // }, [refresh]);
 
   function incrementVotes() {
     setVotes((currentVotes) => currentVotes + 1);
@@ -37,7 +40,9 @@ const ArticleCard = () => {
     });
   }
 
-  if (article.length === 0 && isLoading === false) {
+  if (typeof error === "string") {
+    return <p className="error">{error}</p>;
+  } else if (article.length === 0 && isLoading === false) {
     return <section>No article found!</section>;
   } else {
     return (
