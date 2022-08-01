@@ -144,12 +144,15 @@
 .votesButton{
   float: right;
 }
+
+.deleteUpdateCommentButtons,
 .listOfUsersUl{
   list-style: none;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around; 
 }
+
 .listOfUsers{
   width: 100%;
   max-width: 400px;
@@ -181,7 +184,7 @@
   
 }
 
-
+.error,
 .listOfUsersh2{
   text-align: center;
   margin: 20px;

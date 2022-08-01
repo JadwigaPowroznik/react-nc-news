@@ -7,7 +7,9 @@ function CommentsList({ article_id }) {
   const [page, setPage] = useState(1);
   const [body, setBody] = useState("");
   const [disableButton, setDisableButton] = useState(false);
-  const [commentIdToDelete, setCommentIdToDelete] = useState("");
+  const [selectedCommentId, setSelectedCommentId] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  const [update, setUpdate] = useState(false);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -17,12 +19,16 @@ function CommentsList({ article_id }) {
   }, [article_id, page]);
 
   useEffect(() => {
-    if (typeof commentIdToDelete === "number") {
-      api.deleteCommentById(commentIdToDelete).then(() => {
+    if (typeof selectedCommentId === "number" && update === false) {
+      setDeleting(true);
+      api.deleteCommentById(selectedCommentId).then(() => {
+        setDeleting(false);
         window.location.reload();
       });
     }
-  }, [commentIdToDelete, article_id]);
+  }, [selectedCommentId, article_id]);
+
+  let copyCommentsAPI = [...comments];
 
   const handleSubmit = (event) => {
     setDisableButton(true);
@@ -33,12 +39,13 @@ function CommentsList({ article_id }) {
         username: user.username,
         body: body,
       })
-      .then(() => {
+      .then((newComment) => {
         setBody("");
-        window.location.reload();
+        newComment.created_at = Date.now();
+        copyCommentsAPI.push(newComment);
+        setComments(copyCommentsAPI);
+        //window.location.reload();
       });
-
-    // window.location.reload(false);
   };
 
   return (
@@ -74,20 +81,24 @@ function CommentsList({ article_id }) {
                   <button
                     disabled={
                       comment.author !== user.username ||
-                      comment.comment_id === commentIdToDelete
+                      comment.comment_id === selectedCommentId
                     }
                     className="selectButton"
                     onClick={() => {
-                      setCommentIdToDelete(comment.comment_id);
+                      setSelectedCommentId(comment.comment_id);
                     }}
                   >
-                    {comment.comment_id === commentIdToDelete
+                    {comment.comment_id === selectedCommentId
                       ? "Comment Deleted"
                       : "Delete Comment"}
                   </button>
                 </li>
               </ul>
-              <p className="SingleCommentContent">{comment.body}</p>
+              {deleting && comment.comment_id === selectedCommentId ? (
+                <p>deleting...</p>
+              ) : (
+                <p className="SingleCommentContent">{comment.body}</p>
+              )}
             </li>
           );
         })}
