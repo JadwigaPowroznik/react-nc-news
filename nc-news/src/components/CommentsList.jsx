@@ -9,7 +9,6 @@ function CommentsList({ article_id }) {
   const [disableButton, setDisableButton] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState("");
   const [deleting, setDeleting] = useState(false);
-  const [update, setUpdate] = useState(false);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -19,7 +18,7 @@ function CommentsList({ article_id }) {
   }, [article_id, page]);
 
   useEffect(() => {
-    if (typeof selectedCommentId === "number" && update === false) {
+    if (typeof selectedCommentId === "number") {
       setDeleting(true);
       api.deleteCommentById(selectedCommentId).then(() => {
         setDeleting(false);
